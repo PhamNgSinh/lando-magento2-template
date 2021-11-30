@@ -8,11 +8,7 @@
 #     response. One the setup has completed Lando will show a ready-state much more quickly on the next start-up.
 
 # Give this Lando project a unique name
-<<<<<<< HEAD
-name: m2-lando-base
-=======
 name: m2ce
->>>>>>> cb91e93 (upgrade php)
 
 # Start with the default LEMP recipe
 recipe: lemp
@@ -20,30 +16,18 @@ recipe: lemp
 proxy:
   # Set Magento URL
   appserver_nginx:
-<<<<<<< HEAD
-    - magento2.lndo.site
-=======
     - m2ce.lndo.site
->>>>>>> cb91e93 (upgrade php)
 
 # Configure the LEMP recipe
 config:
   # PHP 7.2 for Magento 2.2.3 - adjust as needed
-<<<<<<< HEAD
-  php: '7.2'
-=======
   php: '7.4'
->>>>>>> cb91e93 (upgrade php)
   webroot: pub
   database: mysql
   composer_version: '1.10.21'
 
   # Optionally activate xdebug
-<<<<<<< HEAD
-  xdebug: false
-=======
   xdebug: true
->>>>>>> cb91e93 (upgrade php)
 
   # Optionally mix in your own config files
   #
@@ -58,10 +42,6 @@ services:
   database:
     # Make a random port available to the host machine for your MySQL connection.
     # This can be a number if you want to map a specific port
-<<<<<<< HEAD
-    portforward: true
-
-=======
     type: mysql
     portforward: true
   elasticsearch:
@@ -69,16 +49,10 @@ services:
     # This can be a number if you want to map a specific port
     portforward: true
     type: elasticsearch:7.8.1
->>>>>>> cb91e93 (upgrade php)
   appserver:
     # This will only run the first time `lando start` is executed or on `lando rebuild`
     build_as_root:
       # Install Magento-required xsl extension
-<<<<<<< HEAD
-      - apt-get update -y -q && apt-get install -y libxslt-dev && docker-php-ext-install xsl
-  node:
-    type: 'node:12'
-=======
       - apt-get update -y -q && apt-get install -y libxslt-dev && docker-php-ext-install xsl && docker-php-ext-install sockets
   node:
     type: 'node:12'
@@ -91,7 +65,8 @@ services:
   mailhog:
     type: mailhog:v1.0.0
     portforward: true
->>>>>>> cb91e93 (upgrade php)
+    hogfrom:
+      - appserver
 
 tooling:
   magento:download:
@@ -175,11 +150,7 @@ tooling:
 
   magento:
     description: Execute ./bin/magento commands
-<<<<<<< HEAD
-    cmd: test -f /app/bin/magento && /app/bin/magento
-=======
     cmd: /app/bin/magento
->>>>>>> cb91e93 (upgrade php)
     service: appserver
 
   magento:setup:destroy:
